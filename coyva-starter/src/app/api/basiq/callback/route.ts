@@ -6,7 +6,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
-import { authOptions } import { authOptions } from '@/lib/authOptions'
+import { authOptions } from '@/lib/authOptions'
 import { getUserAccounts } from '@/lib/basiq'
 import { prisma } from '@/lib/prisma'
 import { addMonths } from 'date-fns'
