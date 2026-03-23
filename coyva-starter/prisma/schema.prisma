@@ -1,0 +1,85 @@
+// prisma/schema.prisma
+// Run: npx prisma migrate dev --name init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String       @id @default(cuid())
+  email         String       @unique
+  name          String?
+  passwordHash  String?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  connections   BankConnection[]
+  transactions  Transaction[]
+  budgets       Budget[]
+}
+
+model BankConnection {
+  id              String    @id @default(cuid())
+  userId          String
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Basiq identifiers
+  basiqUserId     String    @unique  // Basiq's user ID for this person
+  basiqJobId      String?            // Job ID from connect flow
+  institutionName String             // e.g. "Commonwealth Bank"
+  accountIds      String[]           // Basiq account IDs linked
+
+  // CDR consent tracking
+  consentGranted  DateTime  @default(now())
+  consentExpires  DateTime  // CDR: max 12 months
+  consentActive   Boolean   @default(true)
+
+  lastSyncedAt    DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+model Transaction {
+  id              String    @id @default(cuid())
+  userId          String
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // From Basiq
+  basiqId         String    @unique  // Deduplicate on sync
+  accountId       String
+  amount          Float              // Negative = debit, positive = credit
+  description     String
+  date            DateTime
+  direction       String             // "debit" | "credit"
+  status          String             // "posted" | "pending"
+  merchantName    String?
+  merchantCategory String?
+
+  // Coyva categorisation
+  category        String    @default("other")
+  notes           String?
+  reviewed        Boolean   @default(false)
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+model Budget {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  category    String
+  limitAud    Float
+  month       Int       // 1–12
+  year        Int
+
+  createdAt   DateTime  @default(now())
+
+  @@unique([userId, category, month, year])
+}
