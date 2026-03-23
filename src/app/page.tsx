@@ -90,7 +90,7 @@ export default function LandingPage() {
 
       // Vignette
       const v=ctx.createRadialGradient(w/2,h/2,0,w/2,h/2,Math.max(w,h)*0.65)
-      v.addColorStop(0,'transparent');v.addColorStop(1,'rgba(8,8,9,0.88)')
+      v.addColorStop(0,'transparent');v.addColorStop(1,'rgba(14,17,23,0.88)')
       ctx.fillStyle=v;ctx.fillRect(0,0,w,h)
 
       frame++;animId=requestAnimationFrame(draw)
@@ -143,15 +143,15 @@ export default function LandingPage() {
       <style suppressHydrationWarning dangerouslySetInnerHTML={{ __html: `
         @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@700;800&family=Geist:wght@200;300;400;500;600&family=Geist+Mono:wght@200;300;400&display=swap');
         *{box-sizing:border-box;margin:0;padding:0}
-        html,body{background:#080809;color:#fff;font-family:'Geist',sans-serif;overflow-x:hidden}
+        html,body{background:#0e1117;color:#fff;font-family:'Geist',sans-serif;overflow-x:hidden}
         @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
         @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
         @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
         .nl{font-size:10px;color:rgba(255,255,255,0.27);background:none;border:none;cursor:pointer;font-family:'Geist',sans-serif;padding:4px 10px;transition:color 0.2s}
         .nl:hover{color:rgba(255,255,255,0.65)}
-        .bp{font-size:11px;font-weight:500;color:#080809;background:#c8ff00;border:none;border-radius:5px;padding:7px 14px;cursor:pointer;font-family:'Geist',sans-serif;transition:opacity 0.15s}
+        .bp{font-size:11px;font-weight:500;color:#0e1117;background:#c8ff00;border:none;border-radius:5px;padding:7px 14px;cursor:pointer;font-family:'Geist',sans-serif;transition:opacity 0.15s}
         .bp:hover{opacity:0.85}
-        .bplg{font-size:13px;font-weight:500;color:#080809;background:#c8ff00;border:none;border-radius:6px;padding:13px 24px;cursor:pointer;font-family:'Geist',sans-serif;transition:opacity 0.15s}
+        .bplg{font-size:13px;font-weight:500;color:#0e1117;background:#c8ff00;border:none;border-radius:6px;padding:13px 24px;cursor:pointer;font-family:'Geist',sans-serif;transition:opacity 0.15s}
         .bplg:hover{opacity:0.85}
         .bglg{font-size:13px;color:rgba(255,255,255,0.35);background:none;border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:13px 24px;cursor:pointer;font-family:'Geist',sans-serif;transition:all 0.2s}
         .bglg:hover{border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.65)}
@@ -184,14 +184,43 @@ export default function LandingPage() {
         .fl:hover{color:rgba(255,255,255,0.4)}
         ::-webkit-scrollbar{width:3px}
         ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:99px}
+
+        @media(max-width:768px){
+          .nav-links{display:none !important}
+          .hero-grid{grid-template-columns:1fr !important}
+          .hero-cards-left,.hero-cards-right{display:none !important}
+          .hero-centre{padding:32px 20px 40px !important}
+          .stats-grid{grid-template-columns:1fr 1fr !important}
+          .stat-cell{padding:16px 16px !important}
+          .banks-row{padding:14px 20px !important;gap:8px !important}
+          .feat-sticky-header{padding:18px 20px 12px !important}
+          .feat-items-wrap{padding:0 20px !important}
+          .feat-grid{grid-template-columns:60px 1fr 20px !important;gap:12px !important}
+          .feat-item-h{font-size:16px !important}
+          .feat-item-p{font-size:11px !important;max-width:100% !important}
+          .how-section-head{padding:24px 20px 14px !important}
+          .how-grid{grid-template-columns:1fr !important}
+          .how-cell{border-right:none !important;border-bottom:1px solid rgba(255,255,255,0.05) !important;padding:20px !important}
+          .how-cell:last-child{border-bottom:none !important}
+          .price-section{padding:32px 20px !important}
+          .price-grid{grid-template-columns:1fr !important}
+          .test-section{padding:32px 20px !important}
+          .test-grid{grid-template-columns:1fr !important}
+          .cta-section{padding:52px 20px !important}
+          .footer-inner{grid-template-columns:1fr !important;gap:14px;text-align:center !important}
+          .fl{margin-left:8px !important;margin-right:8px !important}
+          .bplg{font-size:12px !important;padding:11px 20px !important}
+          .bglg{font-size:12px !important;padding:11px 20px !important}
+          .nav-inner{padding:12px 20px !important}
+        }
       `}} />
 
       <canvas ref={canvasRef} style={{ position:'fixed', top:0, left:0, width:'100%', height:'100%', zIndex:0, pointerEvents:'none' }} />
 
-      <nav style={{ borderBottom:'1px solid rgba(255,255,255,0.04)', background:'rgba(8,8,9,0.88)', backdropFilter:'blur(20px)', position:'fixed', top:0, left:0, right:0, zIndex:200 }}>
-        <div style={{ maxWidth:1100, margin:'0 auto', padding:'14px 40px', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+      <nav style={{ borderBottom:'1px solid rgba(255,255,255,0.04)', background:'rgba(14,17,23,0.88)', backdropFilter:'blur(20px)', position:'fixed', top:0, left:0, right:0, zIndex:200 }}>
+        <div className='nav-inner' style={{ maxWidth:1100, margin:'0 auto', padding:'14px 40px', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
           <Logo />
-          <div style={{ display:'flex', alignItems:'center' }}>
+          <div className='nav-links' style={{ display:'flex', alignItems:'center' }}>
             <button className="nl">Product</button><span style={{ color:'rgba(255,255,255,0.07)', fontSize:10 }}>/</span>
             <button className="nl">Pricing</button><span style={{ color:'rgba(255,255,255,0.07)', fontSize:10 }}>/</span>
             <button className="nl">Security</button>
@@ -207,9 +236,9 @@ export default function LandingPage() {
 
         {/* HERO */}
         <section style={{ minHeight:'100vh', paddingTop:62, display:'flex', alignItems:'stretch', justifyContent:'center' }}>
-          <div style={{ width:'100%', maxWidth:1100, margin:'0 auto', display:'grid', gridTemplateColumns:'minmax(0,190px) 1fr minmax(0,190px)' }}>
+          <div className='hero-grid' style={{ width:'100%', maxWidth:1100, margin:'0 auto', display:'grid', gridTemplateColumns:'minmax(0,190px) 1fr minmax(0,190px)' }}>
 
-            <div data-parallax="0.06" style={{ display:'flex', flexDirection:'column', justifyContent:'center', gap:12, padding:'40px 0 40px 28px' }}>
+            <div data-parallax="0.06" className='hero-cards-left' style={{ display:'flex', flexDirection:'column', justifyContent:'center', gap:12, padding:'40px 0 40px 28px' }}>
               <div className="fcard" style={{ padding:'15px 17px' }}>
                 <div style={{ fontSize:7, letterSpacing:2, textTransform:'uppercase', color:'rgba(255,255,255,0.18)', fontFamily:"'Geist Mono',monospace", marginBottom:4 }}>Remaining budget</div>
                 <div style={{ fontFamily:"'Instrument Serif',serif", fontSize:30, letterSpacing:'-2px', color:'#fff', lineHeight:1 }}>$1,<em style={{ color:'#c8ff00', fontStyle:'italic' }}>842</em></div>
@@ -227,7 +256,7 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <div style={{ display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', textAlign:'center', padding:'60px 20px 40px' }}>
+            <div className='hero-centre' style={{ display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', textAlign:'center', padding:'60px 20px 40px' }}>
               <div style={{ fontSize:8, letterSpacing:'2.5px', textTransform:'uppercase', color:'rgba(255,255,255,0.15)', fontFamily:"'Geist Mono',monospace", marginBottom:18, animation:'fadeUp 0.8s 0.2s ease both', opacity:0 }}>Personal finance for Australians</div>
               <h1 data-word-hero style={{ marginBottom:20, lineHeight:0.92 }}>
                 <div style={{ fontFamily:"'Instrument Serif',serif", fontSize:'clamp(22px,2.8vw,38px)', fontStyle:'italic', fontWeight:400, color:'rgba(255,255,255,0.14)', letterSpacing:'-1px', marginBottom:4, display:'block' }}>{mw('stop wondering')}</div>
@@ -248,7 +277,7 @@ export default function LandingPage() {
               <div style={{ fontSize:8, letterSpacing:'2px', textTransform:'uppercase', color:'rgba(255,255,255,0.1)', fontFamily:"'Geist Mono',monospace", marginTop:20, animation:'fadeUp 0.8s 1.1s ease both', opacity:0 }}>↓ Scroll to explore</div>
             </div>
 
-            <div data-parallax="-0.04" style={{ display:'flex', flexDirection:'column', justifyContent:'center', gap:12, padding:'40px 28px 40px 0' }}>
+            <div data-parallax="-0.04" className='hero-cards-right' style={{ display:'flex', flexDirection:'column', justifyContent:'center', gap:12, padding:'40px 28px 40px 0' }}>
               <div className="fcard" style={{ padding:'12px 14px', animationDelay:'-2.5s' }}>
                 <div style={{ fontSize:7, letterSpacing:'1.5px', textTransform:'uppercase', color:'rgba(255,255,255,0.16)', fontFamily:"'Geist Mono',monospace", marginBottom:8 }}>Recent transactions</div>
                 {[{n:'Woolworths',d:'Today',a:'−$84',cr:false},{n:'Salary',d:'22 Mar',a:'+$3,200',cr:true},{n:"Grill'd",d:'21 Mar',a:'−$22',cr:false}].map((t,i)=>(
@@ -276,7 +305,7 @@ export default function LandingPage() {
         </section>
 
         {/* TICKER */}
-        <div style={{ overflow:'hidden', borderTop:'1px solid rgba(255,255,255,0.05)', borderBottom:'1px solid rgba(255,255,255,0.05)', padding:'9px 0', whiteSpace:'nowrap', background:'rgba(8,8,9,0.75)', backdropFilter:'blur(10px)' }}>
+        <div style={{ overflow:'hidden', borderTop:'1px solid rgba(255,255,255,0.05)', borderBottom:'1px solid rgba(255,255,255,0.05)', padding:'9px 0', whiteSpace:'nowrap', background:'rgba(14,17,23,0.75)', backdropFilter:'blur(10px)' }}>
           <div className="ticker-track">
             {['Auto-categorisation','Open Banking CDR','NAB · CBA · ANZ · Westpac','Real-time sync','Budget alerts','98% accuracy','CSV import','No credit card required',
               'Auto-categorisation','Open Banking CDR','NAB · CBA · ANZ · Westpac','Real-time sync','Budget alerts','98% accuracy','CSV import','No credit card required'].map((t,i)=>(
@@ -290,7 +319,7 @@ export default function LandingPage() {
         <div style={{ maxWidth:1100, margin:'0 auto' }}>
 
           {/* STATS */}
-          <div data-reveal style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', borderBottom:'1px solid rgba(255,255,255,0.05)', ...R }}>
+          <div data-reveal className='stats-grid' style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', borderBottom:'1px solid rgba(255,255,255,0.05)', ...R }}>
             {[
               {sl:'/ 01',num:'$2.4',sfx:'B',lbl:'Tracked across users',sub:'Across all connected accounts'},
               {sl:'/ 02',num:'98',sfx:'%',lbl:'Categorisation accuracy',sub:'Trained on AU transactions'},
@@ -307,7 +336,7 @@ export default function LandingPage() {
           </div>
 
           {/* BANKS */}
-          <div data-reveal style={{ padding:'18px 28px', borderBottom:'1px solid rgba(255,255,255,0.05)', display:'flex', alignItems:'center', gap:14, flexWrap:'wrap', ...R }}>
+          <div data-reveal className='banks-row' style={{ padding:'18px 28px', borderBottom:'1px solid rgba(255,255,255,0.05)', display:'flex', alignItems:'center', gap:14, flexWrap:'wrap', ...R }}>
             <div style={{ fontSize:7, letterSpacing:2, textTransform:'uppercase', color:'rgba(255,255,255,0.12)', fontFamily:"'Geist Mono',monospace", whiteSpace:'nowrap' }}>Works with</div>
             {[{ic:'N',bg:'#d32f2f',fg:'#fff',nm:'NAB'},{ic:'C',bg:'#ffcc00',fg:'#000',nm:'CommBank'},{ic:'A',bg:'#007dba',fg:'#fff',nm:'ANZ'},{ic:'W',bg:'#d5002b',fg:'#fff',nm:'Westpac'},{ic:'B',bg:'#ee3524',fg:'#fff',nm:'Bankwest'},{ic:'S',bg:'#00a651',fg:'#fff',nm:'St.George'},{ic:'U',bg:'#ff4e00',fg:'#fff',nm:'Up Bank'},{ic:'M',bg:'#c00',fg:'#fff',nm:'Macquarie'}].map((b,i)=>(
               <div key={i} className="bank-pill">
@@ -320,7 +349,7 @@ export default function LandingPage() {
 
           {/* FEATURES */}
           <div style={{ position:'relative' }}>
-            <div style={{ position:'sticky', top:0, zIndex:10, padding:'24px 28px 14px', background:'rgba(8,8,9,0.95)', backdropFilter:'blur(16px)', borderBottom:'1px solid rgba(255,255,255,0.04)' }}>
+            <div className='feat-sticky-header' style={{ position:'sticky', top:0, zIndex:10, padding:'24px 28px 14px', background:'rgba(14,17,23,0.95)', backdropFilter:'blur(16px)', borderBottom:'1px solid rgba(255,255,255,0.04)' }}>
               <div style={{ fontSize:7, letterSpacing:'2.5px', textTransform:'uppercase', color:'rgba(255,255,255,0.14)', fontFamily:"'Geist Mono',monospace", marginBottom:5 }}>/ What Coyva does</div>
               <div style={{ fontFamily:"'Syne',sans-serif", fontSize:'clamp(18px,2vw,28px)', fontWeight:800, letterSpacing:'-1px', color:'#fff' }}>
                 Everything you need to <em style={{ fontFamily:"'Instrument Serif',serif", fontStyle:'italic', fontWeight:400, color:'rgba(148,163,184,0.5)', fontSize:'1.1em', letterSpacing:'-1.5px' }}>know your money.</em>
@@ -329,7 +358,7 @@ export default function LandingPage() {
             <div style={{ padding:'0 28px' }}>
               {features.map((f,i)=>(
                 <div key={i} data-reveal className="feat-item" style={{ ...R, transitionDelay:`${i*100}ms` }}>
-                  <div style={{ display:'grid', gridTemplateColumns:'90px 1fr 28px', alignItems:'start', gap:20 }}>
+                  <div className='feat-grid' style={{ display:'grid', gridTemplateColumns:'90px 1fr 28px', alignItems:'start', gap:20 }}>
                     <div className="feat-item-n">{f.n}</div>
                     <div>
                       <div className="feat-item-sub">{f.sub}</div>
@@ -351,7 +380,7 @@ export default function LandingPage() {
                 Up and running in <em style={{ fontFamily:"'Instrument Serif',serif", fontStyle:'italic', fontWeight:400, color:'rgba(148,163,184,0.5)', fontSize:'1.1em' }}>60 seconds.</em>
               </div>
             </div>
-            <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', borderTop:'1px solid rgba(255,255,255,0.05)', borderBottom:'1px solid rgba(255,255,255,0.05)' }}>
+            <div className='how-grid' style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', borderTop:'1px solid rgba(255,255,255,0.05)', borderBottom:'1px solid rgba(255,255,255,0.05)' }}>
               {[
                 {n:'/ 01',h:'Create your account',em:'free',p:"Sign up with your email. No credit card required. Coyva is free to start — connect one bank account and see everything clearly before you decide to upgrade.",detail:'~30 seconds'},
                 {n:'/ 02',h:'Connect your bank',em:'securely',p:"Authorise via Australia's Consumer Data Right framework. The same regulated system the big banks use. Read-only — we can see transactions but can never touch your money.",detail:'60 second authorisation'},
@@ -373,7 +402,7 @@ export default function LandingPage() {
               <div style={{ fontSize:7, letterSpacing:'2.5px', textTransform:'uppercase', color:'rgba(255,255,255,0.14)', fontFamily:"'Geist Mono',monospace", marginBottom:5 }}>/ Pricing</div>
               <div style={{ fontFamily:"'Syne',sans-serif", fontSize:'clamp(18px,2vw,28px)', fontWeight:800, letterSpacing:'-1px', color:'#fff' }}>Simple, <em style={{ fontFamily:"'Instrument Serif',serif", fontStyle:'italic', fontWeight:400, color:'rgba(148,163,184,0.5)', fontSize:'1.1em' }}>honest</em> pricing.</div>
             </div>
-            <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:12 }}>
+            <div className='price-grid' style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:12 }}>
               {[
                 {name:'Free',price:'$0',period:'forever',desc:'Get started and see what Coyva can do for free.',features:['1 bank account','CSV import','3 months history','Auto-categorisation','Basic budgets'],cta:'Get started',featured:false},
                 {name:'Pro',price:'$9',period:'/ month',desc:'Everything you need to truly know your finances.',features:['Unlimited accounts','Unlimited history','Real-time sync','Budget alerts','Savings insights','Priority support'],cta:'Start free trial',featured:true},
@@ -397,7 +426,7 @@ export default function LandingPage() {
                       </div>
                     ))}
                   </div>
-                  <button onClick={()=>p.cta!=='Coming soon'&&router.push('/register')} style={{ width:'100%', padding:'10px', background:p.featured?'#c8ff00':'rgba(255,255,255,0.04)', color:p.featured?'#080809':'rgba(255,255,255,0.4)', border:p.featured?'none':'1px solid rgba(255,255,255,0.08)', borderRadius:8, fontSize:12, fontWeight:p.featured?500:400, cursor:p.cta==='Coming soon'?'default':'pointer', fontFamily:"'Geist',sans-serif", opacity:p.cta==='Coming soon'?0.4:1 }}>{p.cta}</button>
+                  <button onClick={()=>p.cta!=='Coming soon'&&router.push('/register')} style={{ width:'100%', padding:'10px', background:p.featured?'#c8ff00':'rgba(255,255,255,0.04)', color:p.featured?'#0e1117':'rgba(255,255,255,0.4)', border:p.featured?'none':'1px solid rgba(255,255,255,0.08)', borderRadius:8, fontSize:12, fontWeight:p.featured?500:400, cursor:p.cta==='Coming soon'?'default':'pointer', fontFamily:"'Geist',sans-serif", opacity:p.cta==='Coming soon'?0.4:1 }}>{p.cta}</button>
                 </div>
               ))}
             </div>
@@ -434,7 +463,7 @@ export default function LandingPage() {
           </div>
 
           {/* CTA */}
-          <div data-reveal style={{ textAlign:'center', padding:'72px 28px', ...R }}>
+          <div data-reveal className='cta-section' style={{ textAlign:'center', padding:'72px 28px', ...R }}>
             <div style={{ fontSize:7, letterSpacing:'2.5px', textTransform:'uppercase', color:'rgba(255,255,255,0.14)', fontFamily:"'Geist Mono',monospace", marginBottom:14 }}>/ Get started today</div>
             <div data-word style={{ marginBottom:14 }}>
               <div style={{ fontFamily:"'Syne',sans-serif", fontSize:'clamp(32px,3.5vw,52px)', fontWeight:800, letterSpacing:'-2.5px', lineHeight:1 }}>{mw('Finally know')}</div>
@@ -447,8 +476,8 @@ export default function LandingPage() {
 
         </div>
 
-        <footer style={{ borderTop:'1px solid rgba(255,255,255,0.05)', background:'rgba(8,8,9,0.95)' }}>
-          <div style={{ maxWidth:1100, margin:'0 auto', padding:'18px 28px', display:'grid', gridTemplateColumns:'1fr auto 1fr', alignItems:'center', gap:16 }}>
+        <footer style={{ borderTop:'1px solid rgba(255,255,255,0.05)', background:'rgba(14,17,23,0.95)' }}>
+          <div className='footer-inner' style={{ maxWidth:1100, margin:'0 auto', padding:'18px 28px', display:'grid', gridTemplateColumns:'1fr auto 1fr', alignItems:'center', gap:16 }}>
             <Logo size="sm" />
             <div>{['Privacy','Terms','CDR Policy','Security','About'].map(l=><button key={l} className="fl">{l}</button>)}</div>
             <div style={{ fontSize:8, color:'rgba(255,255,255,0.07)', fontFamily:"'Geist Mono',monospace", textAlign:'right' }}>© 2026 Coyva · Encrypted · Never sold · Australian CDR accredited</div>
