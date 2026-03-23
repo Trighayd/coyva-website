@@ -5,7 +5,7 @@
 
 import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { authOptions } from '@/lib/authOptions'
 import { refreshUserData, getUserTransactions } from '@/lib/basiq'
 import { categorise } from '@/lib/categorise'
 import { prisma } from '@/lib/prisma'
